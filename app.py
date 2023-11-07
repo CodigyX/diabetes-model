@@ -36,4 +36,4 @@ class OutputData(BaseModel):
 def predict(data: InputData):
     model_input = np.array([v for k, v in data.dict().items()]).reshape(1, -1)
     result = model.predict_proba(model_input)[:, 1][0]
-    return {'probability': result}
+    return {'Probabilidad': result}

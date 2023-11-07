@@ -5,7 +5,7 @@ from sklearn.metrics import classification_report
 from joblib import dump
 import pathlib
 
-data = pd.read_csv(pathlib.Path('data/original-diabetes-dataset-prediction.csv'))
+data = pd.read_csv(pathlib.Path('data/diabetes-dataset-prediction.csv'))
 
 data['gender'] = data['gender'].map({'Female': 0, 'Male': 1})
 
