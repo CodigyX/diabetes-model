@@ -1,0 +1,35 @@
+#manifest
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: model-diabetes-deployment
+spec:
+  selector:
+    matchLabels:
+      app: model-diabetes-server
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: model-diabetes-server
+    spec:
+      containers:
+      - name: model-diabetes
+        #image: gcr.io/tensorflow-serving/resnet 
+        image: docker.io/aldotr/diabetes-model-ai:latest
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    run: model-diabetes-service
+  name: model-diabetes-service
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: model-diabetes-server
+  type: LoadBalancer
