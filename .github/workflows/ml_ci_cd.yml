@@ -16,9 +16,9 @@ jobs:
       - name: Instalar dependencias
         run: pip install -r requirements.txt
       - name: download dataset
-        run: wget -O data/diabetes-dataset-prediction-rebuilt.csv ${{github.event.client_payload.dataseturl}}
+        run: wget -O data/diabetes-dataset-prediction.csv ${{github.event.client_payload.dataseturl}}
       - name: cat dataset
-        run: cat data/diabetes-dataset-prediction-rebuilt.csv
+        run: cat data/diabetes-dataset-prediction.csv
       - name: Entrenar modelo de Machine Learning
         run: python model/train.py
       - name: Constuir Imagen Docker
