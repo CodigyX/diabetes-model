@@ -16,7 +16,7 @@ spec:
       containers:
       - name: diabetesml-container
         #image: gcr.io/tensorflow-serving/resnet 
-        image: docker.io/codigyx/diabetesml:latest
+        image: docker.io/codigyx/diabetes-ml:latest
         ports:
         - containerPort: 80
 ---
