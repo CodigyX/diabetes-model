@@ -16,9 +16,9 @@ jobs:
       - name: Instalar dependencias
         run: pip install -r requirements.txt
       - name: download dataset
-        run: wget -O data/diabetes-dataset-prediction.csv ${{github.event.client_payload.dataseturl}}
+        run: wget -O data/diabetes-prediction-dataset.csv ${{github.event.client_payload.dataseturl}}
       - name: cat dataset
-        run: cat data/diabetes-dataset-prediction.csv
+        run: cat data/diabetes-prediction-dataset.csv
       - name: Entrenar modelo de Machine Learning
         run: python model/train.py
       - name: Constuir Imagen Docker
@@ -30,7 +30,7 @@ jobs:
           DOCKER_USER: ${{secrets.DOCKER_USER}}
           DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
         run: |
-          docker login -u $DOCKER_USER -p $DOCKER_PASSWORD 
+          docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
 
       - name: Docker Push
         run: docker push ${{secrets.DOCKER_USER}}/${{secrets.MODEL_NAME}}:${{github.event.client_payload.sha}}
